@@ -1,7 +1,7 @@
 CREATE TABLE CUSTOMER
 (
  CUS_ID INT NOT NULL AUTO_INCREMENT,
- NAME VARCHAR(255),
+ SERNAME VARCHAR(255),
  PRIMARY KEY (CUS_ID)
 )
 ENGINE=InnoDB;
@@ -16,6 +16,15 @@ ENGINE=InnoDB;
 ALTER TABLE PHONENUMBER
  ADD CONSTRAINT FK_28498m2ap6ybm5xn8tce6iwmh FOREIGN KEY (CUS_ID)
  REFERENCES CUSTOMER (CUS_ID)
+
 ALTER TABLE `customer` ADD `username` VARCHAR(30) NOT NULL AFTER `SERNAME`;
 ALTER TABLE `customer` ADD `pwd` VARCHAR(30) NOT NULL AFTER `username`;
 ALTER TABLE customer ADD ( USERROLES SET('ADMIN', 'CLIENT') DEFAULT 'CLIENT' );
+
+http://localhost:8080/hello/rest/services/authenticate
+{
+    "username": "test1",
+    "pwd": "123456"
+}
+
+http://localhost:8080/hello/rest/services/customers/test1
